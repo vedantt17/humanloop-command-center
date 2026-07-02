@@ -1,6 +1,6 @@
 # HumanLoop Command Center
 
-Live demo: [humanloop-command-center.vercel.app](https://humanloop-command-center.vercel.app) *(placeholder until deployment is connected)*
+Live demo: [humanloop-command-center.vercel.app](https://humanloop-command-center.vercel.app)
 
 HumanLoop Command Center is a polished full-stack AI data operations dashboard for managing expert-labeled LLM evaluation pipelines. It simulates how an AI data operations team turns customer requirements into contributor assignments, rubric-scored tasks, QA validation, and delivery-ready datasets for frontier AI lab customers.
 
@@ -144,4 +144,3 @@ The quality engine flags:
 - Add customer-specific rubric versioning.
 - Store export artifacts in object storage with signed download links.
 - Add Playwright end-to-end tests for dashboard filters, drawers, and export buttons.
-
