@@ -33,7 +33,36 @@ button {
 }
 
 .app-shell {
+  position: relative;
   min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+.live-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 22% -8%, rgba(99, 91, 255, 0.18), transparent 30rem),
+    radial-gradient(circle at 82% 2%, rgba(0, 212, 255, 0.16), transparent 28rem),
+    linear-gradient(180deg, #fbfdff 0%, #f6f0ff 42%, #edf7fb 100%);
+}
+
+.live-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(248, 251, 255, 0.46)),
+    radial-gradient(circle at 50% 14%, rgba(255, 255, 255, 0.32), transparent 34rem);
+}
+
+.live-background .vanta-canvas {
+  opacity: 0.68 !important;
+  filter: saturate(1.22) contrast(1.04);
 }
 
 .brand {
@@ -107,6 +136,8 @@ td span,
 }
 
 .workspace {
+  position: relative;
+  z-index: 1;
   min-width: 0;
   width: min(1220px, calc(100% - 48px));
   margin: 0 auto;
@@ -186,11 +217,6 @@ td span,
   background:
     linear-gradient(90deg, rgba(8, 14, 24, 0.9), rgba(10, 19, 34, 0.42)),
     #0a1322;
-}
-
-.command-band .vanta-canvas {
-  opacity: 0.9 !important;
-  filter: saturate(1.2) contrast(1.08);
 }
 
 .command-overlay {
@@ -960,9 +986,9 @@ td span {
 
 body {
   background:
-    radial-gradient(circle at 22% -8%, rgba(99, 91, 255, 0.15), transparent 30rem),
-    radial-gradient(circle at 80% 4%, rgba(0, 212, 255, 0.17), transparent 28rem),
-    linear-gradient(180deg, #fbfdff 0%, #f6f9fc 42%, #eef4fb 100%);
+    radial-gradient(circle at 22% -8%, rgba(99, 91, 255, 0.14), transparent 30rem),
+    radial-gradient(circle at 80% 4%, rgba(0, 212, 255, 0.14), transparent 28rem),
+    linear-gradient(180deg, #fbfdff 0%, #f7f2ff 42%, #eef7fb 100%);
 }
 
 .brand strong,
@@ -1022,21 +1048,15 @@ td span,
 
 .command-band {
   border-color: #d8e2f0;
-  background:
-    linear-gradient(110deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.18)),
-    linear-gradient(135deg, #fffaff 0%, #f4eaff 42%, #eee7ff 100%);
-  box-shadow: 0 24px 60px rgba(50, 50, 93, 0.10);
-}
-
-.command-band .vanta-canvas {
-  opacity: 0.78 !important;
-  filter: saturate(1.35) contrast(1.06);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 60px rgba(50, 50, 93, 0.09);
+  backdrop-filter: blur(0.6px);
 }
 
 .command-overlay {
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.2)),
-    linear-gradient(180deg, rgba(250, 245, 255, 0.08), rgba(246, 240, 255, 0.26));
+    linear-gradient(90deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.44) 42%, rgba(255, 255, 255, 0.08) 72%, rgba(255, 255, 255, 0.02) 100%),
+    linear-gradient(180deg, rgba(250, 245, 255, 0.01), rgba(246, 240, 255, 0.03));
 }
 
 h1 {

@@ -228,6 +228,7 @@ function Shell({
 }) {
   return (
     <div className="app-shell">
+      <LiveBackground />
       <main className="workspace">
         <TopDock view={view} onView={onView} />
         <CommandBand search={search} onSearch={onSearch} />
@@ -235,6 +236,63 @@ function Shell({
       </main>
     </div>
   );
+}
+
+function LiveBackground() {
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    let effect: { destroy?: () => void } | undefined;
+    let cancelled = false;
+    let starting = false;
+    const canAnimate = () => Boolean(ref.current);
+    const destroy = () => {
+      effect?.destroy?.();
+      effect = undefined;
+    };
+    const start = async () => {
+      if (effect || starting || !canAnimate()) return;
+      starting = true;
+      try {
+        const [p5Module, topology] = await Promise.all([import("p5"), import("vanta/dist/vanta.topology.min")]);
+        if (cancelled || !ref.current || !canAnimate()) return;
+        const p5 = p5Module.default ?? p5Module;
+        effect = topology.default({
+          el: ref.current,
+          p5,
+          mouseControls: false,
+          touchControls: false,
+          gyroControls: false,
+          minHeight: 360,
+          minWidth: 320,
+          scale: 1,
+          scaleMobile: 1,
+          color: 0xa78bfa,
+          backgroundColor: 0xf5edff,
+          points: 6,
+          maxDistance: 19,
+          spacing: 20
+        });
+      } catch {
+        destroy();
+      } finally {
+        starting = false;
+      }
+    };
+    const handleResize = () => {
+      destroy();
+      void start();
+    };
+    window.addEventListener("resize", handleResize);
+    void start();
+    return () => {
+      cancelled = true;
+      window.removeEventListener("resize", handleResize);
+      effect?.destroy?.();
+    };
+  }, []);
+
+  return <div className="live-background" ref={ref} aria-hidden="true" />;
 }
 
 function TopDock({ view, onView }: { view: View; onView: (view: View) => void }) {
@@ -272,64 +330,8 @@ function TopDock({ view, onView }: { view: View; onView: (view: View) => void })
 }
 
 function CommandBand({ search, onSearch }: { search: string; onSearch: (value: string) => void }) {
-  const ref = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    let effect: { destroy?: () => void } | undefined;
-    let cancelled = false;
-    let starting = false;
-    const canAnimate = () => Boolean(ref.current && window.innerWidth >= 760);
-    const destroy = () => {
-      effect?.destroy?.();
-      effect = undefined;
-    };
-    const start = async () => {
-      if (effect || starting || !canAnimate()) return;
-      starting = true;
-      try {
-        const [p5Module, topology] = await Promise.all([import("p5"), import("vanta/dist/vanta.topology.min")]);
-        if (cancelled || !ref.current || !canAnimate()) return;
-        const p5 = p5Module.default ?? p5Module;
-        effect = topology.default({
-          el: ref.current,
-          p5,
-          mouseControls: true,
-          touchControls: false,
-          gyroControls: false,
-          minHeight: 210,
-          minWidth: 200,
-          scale: 1,
-          scaleMobile: 1,
-          color: 0x9f7aea,
-          backgroundColor: 0xf4eaff,
-          points: 5,
-          maxDistance: 17,
-          spacing: 18
-        });
-      } catch {
-        destroy();
-      } finally {
-        starting = false;
-      }
-    };
-    const handleResize = () => {
-      if (!canAnimate()) {
-        destroy();
-        return;
-      }
-      void start();
-    };
-    window.addEventListener("resize", handleResize);
-    void start();
-    return () => {
-      cancelled = true;
-      window.removeEventListener("resize", handleResize);
-      effect?.destroy?.();
-    };
-  }, []);
-
   return (
-    <header className="command-band" ref={ref}>
+    <header className="command-band">
       <div className="command-overlay" />
       <div className="command-content">
         <div>
