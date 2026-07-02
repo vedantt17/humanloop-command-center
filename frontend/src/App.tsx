@@ -41,14 +41,14 @@ import type { Contributor, DeliveryNotes, EvaluationTask, Project, QualityFlag, 
 type View = "overview" | "projects" | "contributors" | "tasks" | "flags" | "llm" | "exports";
 type SortDirection = "asc" | "desc";
 
-const navItems: Array<{ id: View; label: string; icon: typeof LayoutDashboard }> = [
-  { id: "overview", label: "Overview", icon: LayoutDashboard },
-  { id: "projects", label: "Projects", icon: Boxes },
-  { id: "contributors", label: "Contributors", icon: UsersRound },
-  { id: "tasks", label: "Evaluation Tasks", icon: ClipboardCheck },
-  { id: "flags", label: "Quality Flags", icon: ShieldCheck },
-  { id: "llm", label: "LLM Ops", icon: Bot },
-  { id: "exports", label: "Exports", icon: Database }
+const navItems: Array<{ id: View; label: string; shortLabel: string; icon: typeof LayoutDashboard }> = [
+  { id: "overview", label: "Overview", shortLabel: "Overview", icon: LayoutDashboard },
+  { id: "projects", label: "Projects", shortLabel: "Projects", icon: Boxes },
+  { id: "contributors", label: "Contributors", shortLabel: "People", icon: UsersRound },
+  { id: "tasks", label: "Evaluation Tasks", shortLabel: "Tasks", icon: ClipboardCheck },
+  { id: "flags", label: "Quality Flags", shortLabel: "Quality", icon: ShieldCheck },
+  { id: "llm", label: "LLM Ops", shortLabel: "LLM Ops", icon: Bot },
+  { id: "exports", label: "Exports", shortLabel: "Exports", icon: Database }
 ];
 
 const statusOrder = ["unassigned", "assigned", "submitted", "in review", "approved", "rejected", "delivered"];
@@ -228,40 +228,46 @@ function Shell({
 }) {
   return (
     <div className="app-shell">
-      <aside className="sidebar">
-        <div className="brand">
-          <div className="brand-mark">HL</div>
-          <div>
-            <strong>HumanLoop</strong>
-            <span>Command Center</span>
-          </div>
-        </div>
-        <nav className="nav-list" aria-label="Primary dashboard navigation">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            return (
-              <button
-                className={`nav-item ${view === item.id ? "active" : ""}`}
-                key={item.id}
-                onClick={() => onView(item.id)}
-                title={item.label}
-              >
-                <Icon size={17} />
-                <span>{item.label}</span>
-              </button>
-            );
-          })}
-        </nav>
-        <div className="sidebar-foot">
-          <span>Ops Health</span>
-          <strong>Seeded synthetic data</strong>
-        </div>
-      </aside>
       <main className="workspace">
+        <TopDock view={view} onView={onView} />
         <CommandBand search={search} onSearch={onSearch} />
         {children}
       </main>
     </div>
+  );
+}
+
+function TopDock({ view, onView }: { view: View; onView: (view: View) => void }) {
+  return (
+    <header className="top-dock">
+      <div className="brand dock-brand">
+        <div className="brand-mark">HL</div>
+        <div>
+          <strong>HumanLoop</strong>
+          <span>Evaluation Ops</span>
+        </div>
+      </div>
+      <nav className="nav-list dock-nav" aria-label="Primary dashboard navigation">
+        {navItems.map((item) => {
+          const Icon = item.icon;
+          return (
+            <button
+              className={`nav-item ${view === item.id ? "active" : ""}`}
+              key={item.id}
+              onClick={() => onView(item.id)}
+              title={item.label}
+            >
+              <Icon size={16} />
+              <span>{item.shortLabel}</span>
+            </button>
+          );
+        })}
+      </nav>
+      <div className="ops-status">
+        <span>Dataset</span>
+        <strong>Seeded synthetic</strong>
+      </div>
+    </header>
   );
 }
 
