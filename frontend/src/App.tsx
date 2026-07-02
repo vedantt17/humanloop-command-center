@@ -53,12 +53,12 @@ const navItems: Array<{ id: View; label: string; icon: typeof LayoutDashboard }>
 
 const statusOrder = ["unassigned", "assigned", "submitted", "in review", "approved", "rejected", "delivered"];
 const riskColors: Record<string, string> = {
-  low: "#22C55E",
-  medium: "#F59E0B",
-  high: "#F97316",
-  critical: "#EF4444"
+  low: "#00A86B",
+  medium: "#C17C00",
+  high: "#D95F02",
+  critical: "#D92D5C"
 };
-const chartColors = ["#38BDF8", "#A78BFA", "#22C55E", "#F59E0B", "#EF4444", "#14B8A6", "#E2E8F0"];
+const chartColors = ["#635BFF", "#00D4FF", "#00A86B", "#FFB020", "#FF5A7A", "#00B8A9", "#8FA3BF"];
 
 function App() {
   const [view, setView] = useState<View>("overview");
@@ -294,8 +294,8 @@ function CommandBand({ search, onSearch }: { search: string; onSearch: (value: s
           minWidth: 200,
           scale: 1,
           scaleMobile: 1,
-          color: 0x7dd3fc,
-          backgroundColor: 0x0a1322,
+          color: 0x635bff,
+          backgroundColor: 0xf6f9fc,
           points: 5,
           maxDistance: 17,
           spacing: 18
@@ -458,10 +458,10 @@ function Overview({
         <Panel title="Pipeline Funnel" action="All tasks">
           <ResponsiveContainer width="100%" height={260}>
             <BarChart data={summary.pipeline_funnel}>
-              <CartesianGrid stroke="#263244" vertical={false} />
-              <XAxis dataKey="status" tick={{ fill: "#94A3B8", fontSize: 11 }} interval={0} angle={-18} textAnchor="end" height={54} />
-              <YAxis tick={{ fill: "#94A3B8", fontSize: 11 }} />
-              <Tooltip content={<ChartTooltip />} cursor={{ fill: "rgba(56,189,248,0.08)" }} />
+              <CartesianGrid stroke="#D9E2EF" vertical={false} />
+              <XAxis dataKey="status" tick={{ fill: "#62748E", fontSize: 11 }} interval={0} angle={-18} textAnchor="end" height={54} />
+              <YAxis tick={{ fill: "#62748E", fontSize: 11 }} />
+              <Tooltip content={<ChartTooltip />} cursor={{ fill: "rgba(99,91,255,0.08)" }} />
               <Bar dataKey="count" radius={[4, 4, 0, 0]}>
                 {summary.pipeline_funnel.map((_, index) => (
                   <Cell key={index} fill={chartColors[index % chartColors.length]} />
@@ -691,11 +691,11 @@ function FlagsView({ flags, summary }: { flags: QualityFlag[]; summary: Summary 
       <Panel title="Rejection Reasons" action="QA failures">
         <ResponsiveContainer width="100%" height={280}>
           <BarChart data={summary.rejection_reasons} layout="vertical" margin={{ left: 36 }}>
-            <CartesianGrid stroke="#263244" horizontal={false} />
-            <XAxis type="number" tick={{ fill: "#94A3B8", fontSize: 11 }} />
-            <YAxis type="category" dataKey="reason" width={130} tick={{ fill: "#94A3B8", fontSize: 11 }} />
+            <CartesianGrid stroke="#D9E2EF" horizontal={false} />
+            <XAxis type="number" tick={{ fill: "#62748E", fontSize: 11 }} />
+            <YAxis type="category" dataKey="reason" width={130} tick={{ fill: "#62748E", fontSize: 11 }} />
             <Tooltip content={<ChartTooltip />} />
-            <Bar dataKey="count" fill="#EF4444" radius={[0, 4, 4, 0]} />
+            <Bar dataKey="count" fill="#D92D5C" radius={[0, 4, 4, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </Panel>
