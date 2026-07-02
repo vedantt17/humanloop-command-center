@@ -321,10 +321,6 @@ function TopDock({ view, onView }: { view: View; onView: (view: View) => void })
           );
         })}
       </nav>
-      <div className="ops-status">
-        <span>Dataset</span>
-        <strong>Seeded synthetic</strong>
-      </div>
     </header>
   );
 }

@@ -90,7 +90,6 @@ button {
 }
 
 .brand span,
-.ops-status span,
 .toolbar label,
 td span,
 .kpi-card span,
@@ -149,7 +148,7 @@ td span,
   top: 14px;
   z-index: 12;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr);
   gap: 12px;
   align-items: center;
   margin-bottom: 16px;
@@ -185,27 +184,6 @@ td span,
 .dock-nav .nav-item {
   flex: 1 1 0;
   min-width: max-content;
-}
-
-.ops-status {
-  justify-self: end;
-  min-width: 136px;
-  padding: 7px 12px;
-  border: 1px solid #dbe4f0;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #ffffff 0%, #f4eaff 100%);
-}
-
-.ops-status strong,
-.ops-status span {
-  display: block;
-  line-height: 1.15;
-}
-
-.ops-status strong {
-  margin-top: 2px;
-  color: #0a2540;
-  font-size: 13px;
 }
 
 .command-band {
@@ -868,7 +846,7 @@ td span {
   .top-dock {
     position: relative;
     top: 0;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr;
     border-radius: 22px;
     padding: 10px;
   }
@@ -880,12 +858,6 @@ td span {
   .dock-nav {
     grid-column: 1 / -1;
     justify-content: flex-start;
-  }
-
-  .ops-status {
-    grid-column: auto;
-    min-width: 0;
-    text-align: center;
   }
 
   .command-content,
