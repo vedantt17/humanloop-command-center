@@ -267,8 +267,8 @@ function LiveBackground() {
           minWidth: 320,
           scale: 1,
           scaleMobile: 1,
-          color: 0xa78bfa,
-          backgroundColor: 0xf5edff,
+          color: 0x8b5cf6,
+          backgroundColor: 0xf0e7ff,
           points: 6,
           maxDistance: 19,
           spacing: 20
