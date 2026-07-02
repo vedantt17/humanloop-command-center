@@ -294,8 +294,8 @@ function CommandBand({ search, onSearch }: { search: string; onSearch: (value: s
           minWidth: 200,
           scale: 1,
           scaleMobile: 1,
-          color: 0x635bff,
-          backgroundColor: 0xf6f9fc,
+          color: 0x9f7aea,
+          backgroundColor: 0xf4eaff,
           points: 5,
           maxDistance: 17,
           spacing: 18

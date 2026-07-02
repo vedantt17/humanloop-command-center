@@ -953,20 +953,20 @@ td span,
 .command-band {
   border-color: #d8e2f0;
   background:
-    linear-gradient(110deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.2)),
-    linear-gradient(135deg, #ffffff 0%, #ecf5ff 44%, #f6efff 100%);
+    linear-gradient(110deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.18)),
+    linear-gradient(135deg, #fffaff 0%, #f4eaff 42%, #eee7ff 100%);
   box-shadow: 0 24px 60px rgba(50, 50, 93, 0.10);
 }
 
 .command-band .vanta-canvas {
-  opacity: 0.7 !important;
-  filter: saturate(1.45) contrast(1.08);
+  opacity: 0.78 !important;
+  filter: saturate(1.35) contrast(1.06);
 }
 
 .command-overlay {
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.18)),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(246, 249, 252, 0.28));
+    linear-gradient(90deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.2)),
+    linear-gradient(180deg, rgba(250, 245, 255, 0.08), rgba(246, 240, 255, 0.26));
 }
 
 h1 {
