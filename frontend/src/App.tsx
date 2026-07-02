@@ -169,15 +169,17 @@ function App() {
 
   return (
     <Shell view={view} onView={setView} search={search} onSearch={setSearch}>
-      <Toolbar
-        domains={domains}
-        domainFilter={domainFilter}
-        statusFilter={statusFilter}
-        flagFilter={flagFilter}
-        onDomain={setDomainFilter}
-        onStatus={setStatusFilter}
-        onFlag={setFlagFilter}
-      />
+      {view !== "overview" && (
+        <Toolbar
+          domains={domains}
+          domainFilter={domainFilter}
+          statusFilter={statusFilter}
+          flagFilter={flagFilter}
+          onDomain={setDomainFilter}
+          onStatus={setStatusFilter}
+          onFlag={setFlagFilter}
+        />
+      )}
       {view === "overview" && (
         <Overview
           summary={summary}
@@ -288,12 +290,12 @@ function CommandBand({ search, onSearch }: { search: string; onSearch: (value: s
           mouseControls: true,
           touchControls: false,
           gyroControls: false,
-          minHeight: 120,
+          minHeight: 210,
           minWidth: 200,
           scale: 1,
           scaleMobile: 1,
-          color: 0x38bdf8,
-          backgroundColor: 0x080b12,
+          color: 0x7dd3fc,
+          backgroundColor: 0x0a1322,
           points: 5,
           maxDistance: 17,
           spacing: 18
@@ -334,7 +336,7 @@ function CommandBand({ search, onSearch }: { search: string; onSearch: (value: s
           <input
             value={search}
             onChange={(event) => onSearch(event.target.value)}
-            placeholder="Search projects, prompts, contributors"
+            placeholder="Search command center"
           />
         </label>
       </div>
@@ -411,9 +413,7 @@ function Overview({
     { label: "Active Projects", value: summary.kpis.active_projects, icon: Layers3, accent: "blue" },
     { label: "Dataset Readiness", value: `${summary.kpis.dataset_readiness_score}%`, icon: Gauge, accent: "green" },
     { label: "QA Pass Rate", value: `${summary.kpis.qa_pass_rate}%`, icon: CheckCircle2, accent: "violet" },
-    { label: "Review Backlog", value: summary.kpis.review_backlog, icon: ClipboardCheck, accent: "amber" },
-    { label: "SLA Risk", value: summary.kpis.sla_risk, icon: AlertTriangle, accent: "red" },
-    { label: "Contributor Approval", value: `${summary.kpis.contributor_approval_rate}%`, icon: UserRoundCheck, accent: "green" }
+    { label: "SLA Risk", value: summary.kpis.sla_risk, icon: AlertTriangle, accent: "red" }
   ];
 
   return (
@@ -423,7 +423,7 @@ function Overview({
           <KpiCard key={item.label} {...item} />
         ))}
       </div>
-      <div className="dashboard-grid">
+      <div className="dashboard-grid overview-grid">
         <Panel title="Active Project Risk" action={`${projects.length} visible`}>
           <div className="table-scroll compact">
             <table>
@@ -432,7 +432,7 @@ function Overview({
                   <th>Project</th>
                   <th>Domain</th>
                   <th>Ready</th>
-                  <th>Deadline</th>
+                  <th>Due</th>
                   <th>Risk</th>
                 </tr>
               </thead>
@@ -469,54 +469,6 @@ function Overview({
               </Bar>
             </BarChart>
           </ResponsiveContainer>
-        </Panel>
-        <Panel title="Contributor Quality" action="Score distribution">
-          <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={summary.contributor_quality_distribution}>
-              <CartesianGrid stroke="#263244" vertical={false} />
-              <XAxis dataKey="band" tick={{ fill: "#94A3B8", fontSize: 12 }} />
-              <YAxis tick={{ fill: "#94A3B8", fontSize: 11 }} />
-              <Tooltip content={<ChartTooltip />} cursor={{ fill: "rgba(167,139,250,0.08)" }} />
-              <Bar dataKey="contributors" fill="#A78BFA" radius={[4, 4, 0, 0]} />
-            </BarChart>
-          </ResponsiveContainer>
-        </Panel>
-        <Panel title="SLA and Throughput" action="14-day export path">
-          <ResponsiveContainer width="100%" height={250}>
-            <AreaChart data={summary.task_throughput_over_time}>
-              <defs>
-                <linearGradient id="throughput" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="5%" stopColor="#38BDF8" stopOpacity={0.45} />
-                  <stop offset="95%" stopColor="#38BDF8" stopOpacity={0.03} />
-                </linearGradient>
-              </defs>
-              <CartesianGrid stroke="#263244" vertical={false} />
-              <XAxis dataKey="date" tick={{ fill: "#94A3B8", fontSize: 10 }} minTickGap={18} />
-              <YAxis tick={{ fill: "#94A3B8", fontSize: 11 }} />
-              <Tooltip content={<ChartTooltip />} />
-              <Area type="monotone" dataKey="tasks" stroke="#38BDF8" fill="url(#throughput)" strokeWidth={2} />
-            </AreaChart>
-          </ResponsiveContainer>
-        </Panel>
-      </div>
-      <div className="dashboard-grid three">
-        <MiniList title="Low-Performing Contributors" rows={summary.low_performing_contributors} />
-        <MiniList title="Overloaded Contributors" rows={summary.overloaded_contributors} />
-        <Panel title="Domain Workload" action="Readiness">
-          <div className="workload-list">
-            {summary.domain_workload.map((domain) => (
-              <div key={domain.domain} className="workload-row">
-                <div>
-                  <strong>{titleCase(domain.domain)}</strong>
-                  <span>{formatNumber(domain.tasks)} tasks</span>
-                </div>
-                <div className="progress-track">
-                  <span style={{ width: `${Math.min(domain.readiness, 100)}%` }} />
-                </div>
-                <em>{domain.readiness}%</em>
-              </div>
-            ))}
-          </div>
         </Panel>
       </div>
     </section>
