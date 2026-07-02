@@ -1,0 +1,124 @@
+{
+  "generated_at": "2026-07-02T09:00:00",
+  "kpis": {
+    "active_projects": 40,
+    "tasks_completed_today": 640,
+    "dataset_readiness_score": 68.4,
+    "qa_pass_rate": 91.6,
+    "review_backlog": 2380,
+    "sla_risk": 11,
+    "contributor_approval_rate": 89.2,
+    "rejected_task_count": 842,
+    "customer_delivery_readiness": 32.5
+  },
+  "pipeline_funnel": [
+    { "status": "unassigned", "count": 616 },
+    { "status": "assigned", "count": 1538 },
+    { "status": "submitted", "count": 1230 },
+    { "status": "in review", "count": 1150 },
+    { "status": "approved", "count": 4584 },
+    { "status": "rejected", "count": 842 },
+    { "status": "delivered", "count": 2040 }
+  ],
+  "qa_pass_rate_by_domain": [
+    { "domain": "finance", "passRate": 93.8, "reviewed": 1900 },
+    { "domain": "healthcare", "passRate": 89.7, "reviewed": 1810 },
+    { "domain": "legal", "passRate": 88.9, "reviewed": 1760 },
+    { "domain": "coding", "passRate": 95.2, "reviewed": 2050 },
+    { "domain": "STEM", "passRate": 91.1, "reviewed": 1740 },
+    { "domain": "general reasoning", "passRate": 90.8, "reviewed": 1680 }
+  ],
+  "contributor_quality_distribution": [
+    { "band": "<3.0", "contributors": 14 },
+    { "band": "3.0-3.49", "contributors": 41 },
+    { "band": "3.5-3.99", "contributors": 58 },
+    { "band": "4.0-4.49", "contributors": 112 },
+    { "band": "4.5-5.0", "contributors": 75 }
+  ],
+  "project_deadline_risk": [],
+  "task_throughput_over_time": [
+    { "date": "2026-06-19", "tasks": 381 },
+    { "date": "2026-06-20", "tasks": 405 },
+    { "date": "2026-06-21", "tasks": 438 },
+    { "date": "2026-06-22", "tasks": 397 },
+    { "date": "2026-06-23", "tasks": 462 },
+    { "date": "2026-06-24", "tasks": 510 },
+    { "date": "2026-06-25", "tasks": 488 },
+    { "date": "2026-06-26", "tasks": 530 },
+    { "date": "2026-06-27", "tasks": 472 },
+    { "date": "2026-06-28", "tasks": 515 },
+    { "date": "2026-06-29", "tasks": 551 },
+    { "date": "2026-06-30", "tasks": 604 },
+    { "date": "2026-07-01", "tasks": 621 },
+    { "date": "2026-07-02", "tasks": 640 }
+  ],
+  "rejection_reasons": [
+    { "reason": "Rubric mismatch", "count": 236 },
+    { "reason": "Low-effort rationale", "count": 201 },
+    { "reason": "Incorrect factual judgment", "count": 165 },
+    { "reason": "Safety policy miss", "count": 138 },
+    { "reason": "Formatting issue", "count": 102 }
+  ],
+  "domain_workload": [
+    { "domain": "finance", "tasks": 2040, "approved": 1310, "open_flags": 214, "readiness": 64.2 },
+    { "domain": "healthcare", "tasks": 1985, "approved": 1120, "open_flags": 248, "readiness": 56.4 },
+    { "domain": "legal", "tasks": 1920, "approved": 1045, "open_flags": 232, "readiness": 54.4 },
+    { "domain": "coding", "tasks": 2105, "approved": 1590, "open_flags": 141, "readiness": 75.5 },
+    { "domain": "STEM", "tasks": 1970, "approved": 1272, "open_flags": 189, "readiness": 64.6 },
+    { "domain": "general reasoning", "tasks": 1980, "approved": 1287, "open_flags": 181, "readiness": 65.0 }
+  ],
+  "quality_flag_categories": [
+    { "category": "Inconsistent rubric score", "count": 312 },
+    { "category": "Project deadline risk", "count": 286 },
+    { "category": "Low-effort reviewer comment", "count": 241 },
+    { "category": "High rejection-rate contributor", "count": 206 }
+  ],
+  "contributor_leaderboard": [],
+  "low_performing_contributors": [
+    {
+      "id": "EXP-0024",
+      "name": "Sofia Nguyen",
+      "domain_expertise": "healthcare, STEM",
+      "location_tz": "US/Eastern",
+      "capacity_per_week": 28,
+      "current_assignment_status": "overloaded",
+      "approval_rate": 73.1,
+      "average_rubric_score": 3.14,
+      "rejection_rate": 22.5,
+      "training_status": "needs refresh",
+      "coaching_flag": true,
+      "historical_throughput": 512,
+      "active_tasks": 39,
+      "load_percent": 139.3,
+      "open_flags": 7
+    }
+  ],
+  "overloaded_contributors": [
+    {
+      "id": "EXP-0024",
+      "name": "Sofia Nguyen",
+      "domain_expertise": "healthcare, STEM",
+      "location_tz": "US/Eastern",
+      "capacity_per_week": 28,
+      "current_assignment_status": "overloaded",
+      "approval_rate": 73.1,
+      "average_rubric_score": 3.14,
+      "rejection_rate": 22.5,
+      "training_status": "needs refresh",
+      "coaching_flag": true,
+      "historical_throughput": 512,
+      "active_tasks": 39,
+      "load_percent": 139.3,
+      "open_flags": 7
+    }
+  ],
+  "domain_coverage_gaps": [
+    { "domain": "finance", "qualified_contributors": 51, "tasks_per_contributor": 40, "status": "covered" },
+    { "domain": "healthcare", "qualified_contributors": 32, "tasks_per_contributor": 62, "status": "gap" },
+    { "domain": "legal", "qualified_contributors": 42, "tasks_per_contributor": 46, "status": "covered" },
+    { "domain": "coding", "qualified_contributors": 58, "tasks_per_contributor": 36, "status": "covered" },
+    { "domain": "STEM", "qualified_contributors": 34, "tasks_per_contributor": 58, "status": "gap" },
+    { "domain": "general reasoning", "qualified_contributors": 47, "tasks_per_contributor": 42, "status": "covered" }
+  ],
+  "top_risk_projects": []
+}

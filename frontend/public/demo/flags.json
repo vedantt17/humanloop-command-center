@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "task_id": "TASK-000257",
+    "project_id": 1,
+    "project_name": "Finance Factuality Evaluation Batch 01",
+    "contributor_id": "EXP-0119",
+    "contributor_name": "Mina Chen",
+    "category": "inconsistent_scoring",
+    "category_label": "Inconsistent rubric score",
+    "severity": "high",
+    "owner": "QA lead",
+    "status": "open",
+    "description": "Reviewer scores diverge beyond allowed rubric variance.",
+    "created_at": "2026-07-02T06:20:00"
+  },
+  {
+    "id": 2,
+    "task_id": null,
+    "project_id": 3,
+    "project_name": "Coding Review Batch 03",
+    "contributor_id": null,
+    "contributor_name": "n/a",
+    "category": "deadline_risk",
+    "category_label": "Project deadline risk",
+    "severity": "critical",
+    "owner": "delivery ops",
+    "status": "open",
+    "description": "Project deadline is approaching before enough approved tasks are ready.",
+    "created_at": "2026-07-02T08:00:00"
+  },
+  {
+    "id": 3,
+    "task_id": null,
+    "project_id": null,
+    "project_name": "network-wide",
+    "contributor_id": "EXP-0024",
+    "contributor_name": "Sofia Nguyen",
+    "category": "high_rejection_contributor",
+    "category_label": "High rejection-rate contributor",
+    "severity": "high",
+    "owner": "contributor ops",
+    "status": "triaged",
+    "description": "Contributor rejection rate exceeds coaching threshold for recent batches.",
+    "created_at": "2026-07-01T19:30:00"
+  }
+]
+
